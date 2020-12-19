@@ -8,6 +8,7 @@ const passport = require('passport');
 
 //Load Input validation
 const  validateRegisterInput= require('../../validaton/register');
+const  validateLoginInput= require('../../validaton/login');
 
 // Load User Model
 const User = require('../../models/User');
@@ -65,6 +66,13 @@ router.post('/register', (req, res) => {
 // @access Public
 
 router.post('/login', (req, res) => {
+    const {errors, isValid} = validateLoginInput(req.body);
+    // check validation
+    if(!isValid) {
+        return res.status(400).json(errors);
+    }
+
+
     const email = req.body.email;
     const password = req.body.password;
 
@@ -72,7 +80,8 @@ router.post('/login', (req, res) => {
     User.findOne({ email }) //email: email but since they are same we can write it like this
         .then(user => {
             if (!user) {
-                return res.status(404).json({ email: 'User not found' });
+                errors.email= 'User not found'
+                return res.status(404).json(errors);
             }
 
             // check password
@@ -97,7 +106,8 @@ router.post('/login', (req, res) => {
                                 })
                             });
                     } else {
-                        return res.status(400).json({ password: 'Password incorrect' })
+                        errors.password= 'Password is incorrect'
+                        return res.status(400).json(errors);
                     }
                 })
         });
