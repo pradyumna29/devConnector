@@ -29,7 +29,7 @@ if (localStorage.jwtToken) {
   if (decoded.exp < currentTime) {
     // LogoutUser
     store.dispatch(logoutUser());
-    // TODO: clear current profile
+    // clear current profile
     store.dispatch(clearCurrentProfile());
     // Redirect to login
     window.location.href = "/login";
