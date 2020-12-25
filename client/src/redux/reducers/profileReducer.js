@@ -23,6 +23,11 @@ export default function (state = initialState, action) {
         ...state,
         profile: null,
       };
+    case ActionTypes.SET_CURRENT_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
+      };
     default:
       return state;
   }

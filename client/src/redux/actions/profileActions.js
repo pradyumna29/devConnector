@@ -48,3 +48,42 @@ export const clearCurrentProfile = () => {
     type: ActionTypes.CLEAR_CURRENT_PROFILE,
   };
 };
+
+// Delete profile
+export const deleteProfile = () => dispatch => {
+  if (window.confirm("Are you sure? This cannot be undone!!")) {
+    axios
+      .delete("/api/profile")
+      .then(res =>
+        dispatch({
+          type: ActionTypes.SET_CURRENT_PROFILE,
+          payload: {},
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: ActionTypes.GET_ERRORS,
+          payoad: err.response.data,
+        })
+      );
+  }
+};
+
+export const deleteUser = () => dispatch => {
+  if (window.confirm("Are you sure? This cannot be undone!!")) {
+    axios
+      .delete("/api/users")
+      .then(res =>
+        dispatch({
+          type: ActionTypes.SET_CURRENT_USER,
+          payload: {},
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: ActionTypes.GET_ERRORS,
+          payoad: err.response.data,
+        })
+      );
+  }
+};
