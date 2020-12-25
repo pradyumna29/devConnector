@@ -43,13 +43,13 @@ class Dashboard extends Component {
             {/* Todo: exp and edu */}
             <div style={{ marginBottom: "60px" }} />
             <button onClick={this.onDeleteClick} className="btn btn-danger">
-              Delete My Profile
+              <i className="fa fa-trash" /> Delete My Profile
             </button>
             <button
               onClick={this.onDeleteAccountClick}
               className="btn btn-danger ml-3"
             >
-              Delete My Account
+              <i className="fa fa-trash" /> Delete My Account
             </button>
           </div>
         );
@@ -76,7 +76,7 @@ class Dashboard extends Component {
       <div className="dashboard">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12 text-center">
               <h1 className="display-4">Dashboard</h1>
               {dashboardContent}
             </div>
