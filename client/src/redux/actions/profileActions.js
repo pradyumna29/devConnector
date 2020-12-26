@@ -49,6 +49,19 @@ export const clearCurrentProfile = () => {
   };
 };
 
+// Add Experience
+export const addExperience = (expData, history) => dispatch => {
+  axios
+    .post("/api/profile/experience", expData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: ActionTypes.GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+};
+
 // Delete profile
 export const deleteProfile = () => dispatch => {
   if (window.confirm("Are you sure? This cannot be undone!!")) {
@@ -63,7 +76,7 @@ export const deleteProfile = () => dispatch => {
       .catch(err =>
         dispatch({
           type: ActionTypes.GET_ERRORS,
-          payoad: err.response.data,
+          payload: err.response.data,
         })
       );
   }
@@ -82,7 +95,7 @@ export const deleteUser = () => dispatch => {
       .catch(err =>
         dispatch({
           type: ActionTypes.GET_ERRORS,
-          payoad: err.response.data,
+          payload: err.response.data,
         })
       );
   }
