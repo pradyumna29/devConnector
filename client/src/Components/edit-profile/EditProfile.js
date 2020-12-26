@@ -11,6 +11,7 @@ import {
   createProfile,
   getCurrentProfile,
 } from "../../redux/actions/profileActions";
+import { Link } from "react-router-dom";
 
 class EditProfile extends Component {
   constructor(props) {
@@ -187,6 +188,9 @@ class EditProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8  offset-md-2">
+              <Link to="/dashboard" className="btn btn-light">
+                Go Back
+              </Link>
               <h1 className="display-4 text-center">Edit Profile</h1>
               <small className="d-block pb-3 text-danger">
                 * = required fields
