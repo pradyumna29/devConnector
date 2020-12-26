@@ -17,14 +17,45 @@ class Profile extends Component {
   }
 
   render() {
-    return <div className="profile"></div>;
+    const { profile, loading } = this.props.profile;
+    let profileContent;
+
+    if (profile === null || loading) {
+      profileContent = <Spinner />;
+    } else {
+      profileContent = (
+        <div className="">
+          <div className="row">
+            <div className="col-md-6">
+              <Link to="/profiles" className="btn btn-light mb-3 float-left">
+                {" "}
+                Back To Profiles
+              </Link>
+            </div>
+          </div>
+          <ProfileHeader profile={profile} />
+          <ProfileAbout profile={profile} />
+          <ProfileCreds profile={profile} />
+          <ProfileGit profile={profile} />
+        </div>
+      );
+    }
+
+    return (
+      <div className="profile">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">{profileContent}</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
   getProfileByHandle: PropTypes.object.isRequired,
-  s,
 };
 
 const mapStateToProps = state => ({
