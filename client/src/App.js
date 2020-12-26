@@ -18,6 +18,7 @@ import Dashboard from "./Components/dashboard/Dashboard";
 import CreateProfile from "./Components/create-profile/CreateProfile";
 import EditProfile from "./Components/edit-profile/EditProfile";
 import AddExperience from "./Components/add-credentials/AddExperience";
+import AddEducation from "./Components/add-credentials/AddEducation";
 
 import "./App.css";
 
@@ -30,7 +31,7 @@ if (localStorage.jwtToken) {
   // set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
 
-  // Check for ex pired token
+  // Check for expired token
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     // LogoutUser
@@ -75,6 +76,13 @@ class App extends Component {
                   exact
                   path="/add-experience"
                   component={AddExperience}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-education"
+                  component={AddEducation}
                 />
               </Switch>
             </div>
