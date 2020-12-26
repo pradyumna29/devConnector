@@ -111,6 +111,25 @@ export const deleteEducation = id => dispatch => {
     );
 };
 
+// Get Profiles
+export const getProfiles = () => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get("/api/profile/all")
+    .then(res =>
+      dispatch({
+        type: ActionTypes.GET_PROFILES,
+        payload: res.data,
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: ActionTypes.GET_PROFILES,
+        payload: null,
+      })
+    );
+};
+
 // Delete profile
 export const deleteProfile = () => dispatch => {
   if (window.confirm("Are you sure? This cannot be undone!!")) {

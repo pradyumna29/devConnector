@@ -18,6 +18,12 @@ export default function (state = initialState, action) {
         profile: action.payload,
         loading: false,
       };
+    case ActionTypes.GET_PROFILES:
+      return {
+        ...state,
+        profiles: action.payload,
+        loading: false,
+      };
     case ActionTypes.CLEAR_CURRENT_PROFILE:
       return {
         ...state,
