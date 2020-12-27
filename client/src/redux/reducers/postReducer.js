@@ -1,4 +1,4 @@
-import * as ActionTypes from "./types";
+import * as ActionTypes from "../actions/types";
 const initialState = {
   posts: [],
   post: {},
@@ -7,6 +7,11 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case ActionTypes.ADD_POST:
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts],
+      };
     default:
       return state;
   }

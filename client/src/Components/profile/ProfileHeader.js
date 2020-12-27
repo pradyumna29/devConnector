@@ -28,6 +28,7 @@ class ProfileHeader extends Component {
                   <a
                     className="text-white p-2"
                     href={profile.website}
+                    rel="noreferrer"
                     target="_blank"
                   >
                     <i className="fa fa-globe fa-2x"></i>
@@ -38,6 +39,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.twitter}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <i className="fa fa-twitter fa-2x"></i>
                   </a>
@@ -48,6 +50,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.facebook}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <i className="fa fa-facebook fa-2x"></i>
                   </a>
@@ -58,6 +61,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.linkedin}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <i className="fa fa-linkedin fa-2x"></i>
                   </a>
@@ -68,6 +72,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.instagram}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <i className="fa fa-instagram fa-2x"></i>
                   </a>

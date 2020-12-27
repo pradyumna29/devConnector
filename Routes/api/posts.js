@@ -46,7 +46,7 @@ router.post(
     const { errors, isValid } = validatePostInput(req.body);
     if (!isValid) {
       //return error with 400 status
-      res.status(400).json(errors);
+      return res.status(400).json(errors);
     }
 
     const newPost = new Post({
