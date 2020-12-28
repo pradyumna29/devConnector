@@ -1,30 +1,30 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./redux/actions/authActions";
-import { clearCurrentProfile } from "./redux/actions/profileActions";
-import { Provider } from "react-redux";
-import store from "./redux/store";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import { setCurrentUser, logoutUser } from './redux/actions/authActions';
+import { clearCurrentProfile } from './redux/actions/profileActions';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
-import PrivateRoute from "./Components/common/PrivateRoute";
+import PrivateRoute from './Components/common/PrivateRoute';
 
-import NavBar from "./Components/layout/NavBar";
-import Footer from "./Components/layout/Footer";
-import Landing from "./Components/layout/Landing";
-import Login from "./Components/auth/Login";
-import Register from "./Components/auth/Register";
-import Dashboard from "./Components/dashboard/Dashboard";
-import CreateProfile from "./Components/create-profile/CreateProfile";
-import EditProfile from "./Components/edit-profile/EditProfile";
-import AddExperience from "./Components/add-credentials/AddExperience";
-import AddEducation from "./Components/add-credentials/AddEducation";
+import NavBar from './Components/layout/NavBar';
+import Footer from './Components/layout/Footer';
+import Landing from './Components/layout/Landing';
+import Login from './Components/auth/Login';
+import Register from './Components/auth/Register';
+import Dashboard from './Components/dashboard/Dashboard';
+import CreateProfile from './Components/create-profile/CreateProfile';
+import EditProfile from './Components/edit-profile/EditProfile';
+import AddExperience from './Components/add-credentials/AddExperience';
+import AddEducation from './Components/add-credentials/AddEducation';
 
-import "./App.css";
-import Profiles from "./Components/profiles/Profiles";
-import Profile from "./Components/profile/Profile";
-import NotFound from "./Components/not-found/NotFound";
-import Posts from "./Components/posts/Posts";
+import './App.css';
+import Profiles from './Components/profiles/Profiles';
+import Profile from './Components/profile/Profile';
+import NotFound from './Components/not-found/NotFound';
+import Posts from './Components/posts/Posts';
 
 // check for token
 if (localStorage.jwtToken) {
@@ -43,7 +43,7 @@ if (localStorage.jwtToken) {
     // clear current profile
     store.dispatch(clearCurrentProfile());
     // Redirect to login
-    window.location.href = "/login";
+    window.location.href = '/login';
   }
 }
 
@@ -60,6 +60,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
+              <Route exact path="/profile/users/:user_id" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

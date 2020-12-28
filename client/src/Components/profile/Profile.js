@@ -1,24 +1,30 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import ProfileAbout from "./ProfileAbout";
-import ProfileHeader from "./ProfileHeader";
-import ProfileCreds from "./ProfileCreds";
-import ProfileGit from "./ProfileGit";
-import Spinner from "../common/Spinner";
-import { getProfileByHandle } from "../../redux/actions/profileActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import ProfileAbout from './ProfileAbout';
+import ProfileHeader from './ProfileHeader';
+import ProfileCreds from './ProfileCreds';
+import ProfileGit from './ProfileGit';
+import Spinner from '../common/Spinner';
+import {
+  getProfileByHandle,
+  getProfileByUser,
+} from '../../redux/actions/profileActions';
 
 class Profile extends Component {
   componentDidMount() {
     if (this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
+    if (this.props.match.params.user_id) {
+      this.props.getProfileByUser(this.props.match.params.user_id);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
-      this.props.history.push("/not-found");
+      this.props.history.push('/not-found');
     }
   }
 
@@ -34,7 +40,7 @@ class Profile extends Component {
           <div className="row">
             <div className="col-md-6">
               <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                {" "}
+                {' '}
                 Back To Profiles
               </Link>
             </div>
@@ -73,4 +79,7 @@ const mapStateToProps = state => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getProfileByHandle })(Profile);
+export default connect(mapStateToProps, {
+  getProfileByHandle,
+  getProfileByUser,
+})(Profile);
