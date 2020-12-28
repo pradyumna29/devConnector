@@ -1,4 +1,4 @@
-import * as ActionTypes from "../actions/types";
+import * as ActionTypes from '../actions/types';
 const initialState = {
   posts: [],
   post: {},
@@ -22,6 +22,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts: [action.payload, ...state.posts],
+      };
+    case ActionTypes.DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post._id !== action.payload),
       };
     default:
       return state;
