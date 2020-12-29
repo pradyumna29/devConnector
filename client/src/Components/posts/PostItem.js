@@ -32,13 +32,14 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth, showActions } = this.props.post;
+    const { auth, post, showActions } = this.props;
+    const postuser = this.props.post.user;
 
     return (
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-            <Link to={`/profile/users/${post.user}`}>
+            <Link to={`/profile/users/${postuser}`}>
               <img
                 className="rounded-circle d-none d-md-block"
                 src={avatar} // post.avatar to be used
@@ -50,7 +51,7 @@ class PostItem extends Component {
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
-            {showActions ? (
+            {!showActions ? null : (
               <span>
                 {' '}
                 <button
@@ -85,7 +86,7 @@ class PostItem extends Component {
                   </button>
                 ) : null}
               </span>
-            ) : null}
+            )}
           </div>
         </div>
       </div>

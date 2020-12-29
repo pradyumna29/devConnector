@@ -5,6 +5,7 @@ import Spinner from '../common/Spinner';
 import { getPost } from '../../redux/actions/postActions';
 import { Link } from 'react-router-dom';
 import PostItem from '../posts/PostItem';
+import CommentForm from '../post/CommentForm';
 
 class Post extends Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class Post extends Component {
   }
 
   render() {
-    const { post, loading } = this.props;
+    const { post, loading } = this.props.post;
     let postContent;
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
@@ -20,6 +21,7 @@ class Post extends Component {
       postContent = (
         <div>
           <PostItem post={post} showActions={false} />
+          <CommentForm postId={post._id} />
         </div>
       );
     }
