@@ -1,31 +1,40 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import { addEducation } from "../../redux/actions/profileActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import TextFieldGroup from '../common/TextFieldGroup';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import { addEducation } from '../../redux/actions/profileActions';
 
 class AddEducation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      school: "",
-      degree: "",
-      fieldOfStudy: "",
-      from: "",
-      to: "",
+      school: '',
+      degree: '',
+      fieldOfStudy: '',
+      from: '',
+      to: '',
       current: false,
-      description: "",
+      description: '',
       errors: {},
       disabled: false,
     };
   }
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      return { errors: nextProps.errors };
     }
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.errors !== prevProps.errors) {
+      this.setState({
+        errors: this.props.errors,
+      });
+    }
+  }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -107,7 +116,7 @@ class AddEducation extends Component {
                   value={this.state.to}
                   onChange={this.onChange}
                   error={errors.to}
-                  disabled={this.state.disabled ? "disabled" : ""}
+                  disabled={this.state.disabled ? 'disabled' : ''}
                 />
                 <div className="form-check mb-4">
                   <input

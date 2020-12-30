@@ -1,36 +1,36 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import SelectListGroup from "../common/SelectListGroup";
-import InputGroup from "../common/InputGroup";
-import isEmpty from "../../Validation/isEmpty";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import TextFieldGroup from '../common/TextFieldGroup';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import SelectListGroup from '../common/SelectListGroup';
+import InputGroup from '../common/InputGroup';
+import isEmpty from '../../Validation/isEmpty';
 import {
   createProfile,
   getCurrentProfile,
-} from "../../redux/actions/profileActions";
-import { Link } from "react-router-dom";
+} from '../../redux/actions/profileActions';
+import { Link } from 'react-router-dom';
 
 class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       displaySocialInputs: false,
-      handle: "",
-      company: "",
-      website: "",
-      location: "",
-      status: "",
-      skills: "",
-      githubusername: "",
-      bio: "",
-      twitter: "",
-      facebook: "",
-      linkedin: "",
-      youtube: "",
-      instagram: "",
+      handle: '',
+      company: '',
+      website: '',
+      location: '',
+      status: '',
+      skills: '',
+      githubusername: '',
+      bio: '',
+      twitter: '',
+      facebook: '',
+      linkedin: '',
+      youtube: '',
+      instagram: '',
       errors: {},
     };
   }
@@ -39,41 +39,52 @@ class EditProfile extends Component {
     this.props.getCurrentProfile();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-
+  static getDerivedStateFromProps(nextProps) {
+    // check for the profile coming in from state
     if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile;
+      return {
+        profile: nextProps.profile,
+      };
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.errors !== prevProps.errors) {
+      this.setState({
+        errors: this.props.errors,
+      });
+    }
+    // setting the values in the form
+    if (this.props.profile.profile !== prevProps.profile.profile) {
+      const profile = this.props.profile.profile;
 
       // Bring skills array back to string
-      const skillsCSV = profile.skills.join(",");
+      const skillsCSV = profile.skills.join(',');
 
       //If profile field doesnt exist, make empty string
-      profile.company = !isEmpty(profile.company) ? profile.company : "";
-      profile.website = !isEmpty(profile.website) ? profile.website : "";
-      profile.location = !isEmpty(profile.location) ? profile.location : "";
+      profile.company = !isEmpty(profile.company) ? profile.company : '';
+      profile.website = !isEmpty(profile.website) ? profile.website : '';
+      profile.location = !isEmpty(profile.location) ? profile.location : '';
       profile.githubusername = !isEmpty(profile.githubusername)
         ? profile.githubusername
-        : "";
-      profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
+        : '';
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
       profile.social = !isEmpty(profile.social) ? profile.social : {};
       profile.twitter = !isEmpty(profile.social.twitter)
         ? profile.social.twitter
-        : "";
+        : '';
       profile.facebook = !isEmpty(profile.social.facebook)
         ? profile.social.facebook
-        : "";
+        : '';
       profile.instagram = !isEmpty(profile.social.instagram)
         ? profile.social.instagram
-        : "";
+        : '';
       profile.youtube = !isEmpty(profile.social.youtube)
         ? profile.social.youtube
-        : "";
+        : '';
       profile.linkedin = !isEmpty(profile.social.linkedin)
         ? profile.social.linkedin
-        : "";
+        : '';
 
       // set component fields state
       this.setState({
@@ -173,15 +184,15 @@ class EditProfile extends Component {
 
     // options for status
     const options = [
-      { label: "* Select Professional Status", value: 0 },
-      { label: "Developer", value: "Developer" },
-      { label: "Junior Developer", value: "Junior Developer" },
-      { label: "Senior Developer", value: "Senior Developer" },
-      { label: "Manager", value: "Manager" },
-      { label: "Student or Learning", value: "Student or Learning" },
-      { label: "Instructor or Teacher", value: "Instructor or Teacher" },
-      { label: "Intern", value: "Intern" },
-      { label: "other", value: "other" },
+      { label: '* Select Professional Status', value: 0 },
+      { label: 'Developer', value: 'Developer' },
+      { label: 'Junior Developer', value: 'Junior Developer' },
+      { label: 'Senior Developer', value: 'Senior Developer' },
+      { label: 'Manager', value: 'Manager' },
+      { label: 'Student or Learning', value: 'Student or Learning' },
+      { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
+      { label: 'Intern', value: 'Intern' },
+      { label: 'other', value: 'other' },
     ];
 
     return (

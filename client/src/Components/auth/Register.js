@@ -1,31 +1,39 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { registerUser } from "../../redux/actions/authActions";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
-import TextFieldGroup from "../common/TextFieldGroup";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { registerUser } from '../../redux/actions/authActions';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
       errors: {},
     };
   }
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push('/dashboard');
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      return { errors: nextProps.errors };
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.errors !== prevProps.errors) {
+      this.setState({
+        errors: this.props.errors,
+      });
     }
   }
 
