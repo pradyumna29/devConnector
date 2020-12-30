@@ -43,7 +43,7 @@ class PostItem extends Component {
               <img
                 className="rounded-circle d-none d-md-block"
                 src={avatar} // post.avatar to be used
-                alt=""
+                alt=" "
               />
             </Link>
             <br />
@@ -80,9 +80,9 @@ class PostItem extends Component {
                   <button
                     type="button"
                     onClick={this.onDeleteClick.bind(this, post._id)}
-                    className="btn btn-danger mr-1"
+                    className="btn btn-secondary mr-1"
                   >
-                    <i className="fa fa-times"></i>
+                    <i className="fa fa-trash"></i>
                   </button>
                 ) : null}
               </span>
