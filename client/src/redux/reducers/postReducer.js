@@ -7,6 +7,8 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case ActionTypes.CLEAR_ERRORS:
+      return {};
     case ActionTypes.POST_LOADING:
       return {
         ...state,
